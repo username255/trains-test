@@ -12,3 +12,85 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+
+.line {
+  border: solid 4px black;
+  z-index: 20;
+}
+
+hr.line {
+  position: absolute !important;
+}
+
+.green {
+  border-color: green;
+  background-color: green;
+}
+
+.red {
+  border-color: red;
+  background-color: red;
+}
+
+.blue {
+  border-color: blue;
+  background-color: blue;
+}
+
+.intersection {
+  background-color: white;
+  /* border: solid 6px black !important; */
+}
+
+.dot {
+  border-radius: 100px;
+  width: 20px;
+  height: 20px;
+  display: inline-block;
+  /* border: solid 3px; */
+  z-index: 100;
+}
+
+.map {
+  min-width: 600px;
+  min-height: 600px;
+  overflow: scroll;
+  background: inherit;
+  position: relative;
+}
+
+table, tbody, tr, td {
+  margin: 0;
+  padding: 0;
+}
+
+table td {
+  width: 60px;
+  height: 60px;
+}
+
+span.dot {
+  position: relative;
+}
+
+span.dot::before {
+  position: absolute;
+  top: -20px;
+  left: -10px;
+  color: white;
+  font-size: 12px;
+  text-align: center;
+  content: attr(data-label);
+  width: 40px;
+  font-weight: 700;
+}
+
+span.dot.red::before {
+  color: red;
+}
+span.dot.green::before {
+  color: green;
+}
+span.dot.blue::before {
+  color: blue;
+}
