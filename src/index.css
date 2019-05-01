@@ -1,14 +1,21 @@
+html, body {
+  min-width: 600px;
+  min-height: 600px;
+  overflow: scroll;
+}
+
 body {
-  margin: 0;
+  margin: 40px;
   padding: 0;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
     "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  box-sizing: border-box;
 }
 
-code {
+code, .mono, #editor input {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
@@ -93,4 +100,214 @@ span.dot.green::before {
 }
 span.dot.blue::before {
   color: blue;
+}
+
+.line-animated {
+  border: none;
+  padding: 4px 0;
+  background-size: 400% 400%;
+}
+
+.line-animated.forward {
+  -webkit-animation: move 4s ease; /* infinite; */
+  -moz-animation: move 4s ease; /* infinite; */
+  animation: move 4s ease; /* infinite; */
+}
+
+.line-animated.back {
+  -webkit-animation: move-back 4s ease; /* infinite; */
+  -moz-animation: move-back 4s ease; /* infinite; */
+  animation: move-back 4s ease; /* infinite; */
+}
+
+.g1 #g1 {
+  /* animation: border-test infinite 2s linear; */
+  border: none;
+  padding: 4px 0;
+
+  background: linear-gradient(270deg, green, yellow, green);
+  background-size: 400% 400%;
+
+  -webkit-animation: move 4s ease; /* infinite; */
+  -moz-animation: move 4s ease; /* infinite; */
+  animation: move 4s ease; /* infinite; */
+}
+
+.g1.back #g1 {
+  -webkit-animation: move-back 4s ease; /* infinite; */
+  -moz-animation: move-back 4s ease; /* infinite; */
+  animation: move-back 4s ease; /* infinite; */
+}
+
+/** on the move css logic */
+
+.GS0 #GS0, .GS1 #GS1, .GS2 #GS2, .GS3 #GS3, .GS4 #GS4, .GS5 #GS5, .GS6 #GS6, .GS7 #GS7,
+.BS0 #BS0, .BS1 #BS1, .BS2 #BS2, .BS3 #BS3, .BS4 #BS4, .BS5 #BS5, .BS6 #BS6, .BS7 #BS7,
+.RS0 #RS0, .RS1 #RS1, .RS2 #RS2, .RS3 #RS3, .RS4 #RS4, .RS5 #RS5, .RS6 #RS6, .RS7 #RS7,
+.GS2 #GS2-BS2, .BS2 #GS2-BS2, .GS4 #GS4-RS2, .RS2 #GS4-RS2, .BS3 #BS3-RS3, .RS3 #BS3-RS3 {
+  border-style: solid;
+  border-width: 6px;
+  box-sizing: border-box;
+}
+
+.GS0 #GS0, .GS1 #GS1, .GS2 #GS2, .GS3 #GS3, .GS4 #GS4, .GS5 #GS5, .GS6 #GS6, .GS7 #GS7, .GS2 #GS2-BS2, .GS4 #GS4-RS2 {
+  border-color: darkgreen;
+}
+
+.BS0 #BS0, .BS1 #BS1, .BS2 #BS2, .BS3 #BS3, .BS4 #BS4, .BS5 #BS5, .BS6 #BS6, .BS7 #BS7, .BS2 #GS2-BS2, .BS3 #BS3-RS3 {
+  border-color: navy;
+}
+
+.RS0 #RS0, .RS1 #RS1, .RS2 #RS2, .RS3 #RS3, .RS4 #RS4, .RS5 #RS5, .RS6 #RS6, .RS7 #RS7, .RS2 #GS4-RS2, .RS3 #BS3-RS3 {
+  border-color: darkred;
+}
+
+/** lines */
+
+.GS0.forward-g #g0, .GS1.forward-g #g1, .GS2.forward-g #g2, .GS3.forward-g #g3, .GS4.forward-g #g4, .GS5.forward-g #g5, .GS6.forward-g #g6  {
+  border: none;
+  padding: 4px 0;
+
+  background: linear-gradient(270deg, green, yellow, green);
+  background-size: 400% 400%;
+
+  -webkit-animation: move 2s ease; /* infinite; */
+  -moz-animation: move 2s ease; /* infinite; */
+  animation: move 2s ease; /* infinite; */
+}
+
+.GS1.back-g #g0, .GS2.back-g #g1, .GS3.back-g #g2, .GS4.back-g #g3, .GS5.back-g #g4, .GS6.back-g #g5  {
+  border: none;
+  padding: 4px 0;
+
+  background: linear-gradient(270deg, green, yellow, green);
+  background-size: 400% 400%;
+
+  -webkit-animation: move-back 2s ease; /* infinite; */
+  -moz-animation: move-back 2s ease; /* infinite; */
+  animation: move-back 2s ease; /* infinite; */
+}
+
+.RS0.forward-r #r0, .RS1.forward-r #r1, .RS2.forward-r #r2, .RS3.forward-r #r3, .RS4.forward-r #r4, .RS5.forward-r #r5, .RS6.forward-r #r6  {
+  border: none;
+  padding: 4px 0;
+  margin-left: 4px;
+
+  background: linear-gradient(270deg, red, yellow, red);
+  background-size: 400% 400%;
+
+  -webkit-animation: move 2s ease; /* infinite; */
+  -moz-animation: move 2s ease; /* infinite; */
+  animation: move 2s ease; /* infinite; */
+}
+
+.RS1.back-r #r0, .RS2.back-r #r1, .RS3.back-r #r2, .RS4.back-r #r3, .RS5.back-r #r4, .RS6.back-r #r5  {
+  border: none;
+  padding: 4px 0;
+  margin-left: 4px;
+
+  background: linear-gradient(270deg, red, yellow, red);
+  background-size: 400% 400%;
+
+  -webkit-animation: move-back 2s ease; /* infinite; */
+  -moz-animation: move-back 2s ease; /* infinite; */
+  animation: move-back 2s ease; /* infinite; */
+}
+
+.BS0.forward-b #b0, .BS1.forward-b #b1, .BS2.forward-b #b2, .BS3.forward-b #b3, .BS4.forward-b #b4, .BS5.forward-b #b5, .BS6.forward-b #b6  {
+  border: none;
+  padding: 4px 0;
+  margin-left: 4px;
+
+  background: linear-gradient(90deg, blue, yellow, blue);
+  background-size: 400% 400%;
+
+  -webkit-animation: move 2s ease; /* infinite; */
+  -moz-animation: move 2s ease; /* infinite; */
+  animation: move 2s ease; /* infinite; */
+}
+
+.BS1.back-b #b0, .BS2.back-b #b1, .BS3.back-b #b2, .BS4.back-b #b3, .BS5.back-b #b4, .BS6.back-b #b5  {
+  border: none;
+  padding: 4px 0;
+  margin-left: 4px;
+
+  background: linear-gradient(90deg, blue, yellow, blue);
+  background-size: 400% 400%;
+
+  -webkit-animation: move-back 2s ease; /* infinite; */
+  -moz-animation: move-back 2s ease; /* infinite; */
+  animation: move-back 2s ease; /* infinite; */
+}
+
+/** keyframes ***************************/
+
+@-webkit-keyframes move {
+  0% { background-position: 0% 50% }
+  50% { background-position: 25% 75% }
+  100% { background-position: 50% 100%}
+}
+@-moz-keyframes move {
+  0% { background-position: 0% 50% }
+  50% { background-position: 25% 75% }
+  100% { background-position: 50% 100%}
+}
+@keyframes move {
+  0% { background-position: 0% 50% }
+  50% { background-position: 25% 75% }
+  100% { background-position: 50% 100%}
+}
+
+@-webkit-keyframes move-back {
+  0% { background-position: 1000% 50% }
+  50% { background-position: 75% 25% }
+  100% { background-position: 50% 0%}
+}
+@-moz-keyframes move-back {
+  0% { background-position: 1000% 50% }
+  50% { background-position: 75% 25% }
+  100% { background-position: 50% 0%}
+}
+@keyframes move-back {
+  0% { background-position: 1000% 50% }
+  50% { background-position: 75% 25% }
+  100% { background-position: 50% 0%}
+}
+
+@keyframes border-test {
+  from {
+    /* transform: rotate(0deg); */
+    /* border-color: linear-gradient(to right, darkgreen, green); */
+    background: linear-gradient(to right, yellow, green);
+  }
+  to {
+    /* transform: rotate(360deg); */
+    /* border-color: linear-gradient(to right, green, darkgreen); */
+    background: linear-gradient(to right, green, yellow);
+  }
+}
+
+#editor input {
+  background: inherit;
+  border: none;
+  border-bottom: solid 1px grey;
+  text-align: center;
+  padding: 4px 8px;
+  margin: 0 4px;
+}
+
+#editor .blue {
+  color: navy;
+}
+#editor .green {
+  color: green;
+}
+#editor .red {
+  color: red;
+}
+
+.mono {
+  font-size: 12px;
+  font-weight: 700;
+  color: #191919;
 }

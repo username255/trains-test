@@ -2,7 +2,7 @@ import React from 'react';
 
 const Base = (props) => {
     return (
-        <span data-label={ (props && props.label) || '' } className={ (props && props.classNames) || '' } ></span>
+        <span data-label={ (props && props.label) || '' } className={ (props && props.classNames) || '' } id={ (props && props.id) } ></span>
     );
 };
 
@@ -11,17 +11,31 @@ const Red = (props) => (Base({ ...props, classNames: 'dot red' }));
 const Green = (props) => (Base({ ...props, classNames: 'dot green' }));
 const Int = (props) => (Base({ ...props, classNames: 'dot intersection' }));
 
+const generateLineStations = (size = 6, label = 'Line', componentRef = Green, prefix = 'G') => {
+    return (new Array(size)).fill(0).map((el, index) => {
+        const props = { id: prefix + index };
+        if (!index) {
+            props.label = label;
+        }
+        return componentRef(props);
+    });
+};
+
+const GS = generateLineStations(7, 'Line A', Green, 'GS');
+const BS = generateLineStations(6, 'Line B', Blue, 'BS');
+const RS = generateLineStations(6, 'Line C', Red, 'RS');
+
 const config = [
-    [ null, null, <Blue label={'Line B'} />, null, null, null, <Red label={'Line C'} />, null, null, null ],
-    [ null, null, <Blue />, null, null, null, <Red />, null, null, null ],
-    [ null, null,  null, null, null, <Green />, <Int />, <Green />, null, <Green /> ],
-    [ <Green label={'Line A'} />, <Green />, <Int />, null, null, null, null, null, null, null ],
+    [ null, null, BS[0], null, null, null, RS[0], null, null, null ],
+    [ null, null, BS[1], null, null, null, RS[1], null, null, null ],
+    [ null, null,  null, null, null, GS[3], <Int id={'GS4-RS2'} />, GS[5], null, GS[6] ],
+    [ GS[0], GS[1], <Int id={'GS2-BS2'} />, null, null, null, null, null, null, null ],
     [ null, null, null, null, null, null, null, null, null, null ],
     [ null, null, null, null, null, null, null, null, null, null ],
-    [ null, null, null, null, <Int />, null, null, <Blue />, <Blue />, null ],
+    [ null, null, null, null, <Int id={'BS3-RS3'} />, null, null, BS[4], BS[5], null ],
     [ null, null, null, null, null, null, null, null, null, null ],
-    [ null, null, null, <Red />, null, null, null, null, null, null ],
-    [ null, null, null, <Red />, null, null, null, null, null, null ]
+    [ null, null, null, RS[4], null, null, null, null, null, null ],
+    [ null, null, null, RS[5], null, null, null, null, null, null ]
 ];
 
 const blueLine = [
@@ -38,7 +52,7 @@ const redLine = [
     { top: 45, left: 370, width: 60, transform: `rotate(90deg)` },
     { top: 110, left: 372, width: 56, transform: `rotate(90deg)` },
     { top: 262, left: 210, width: 260, transform: `rotate(-63deg)` },
-    { top: 445, left: 184, width: 125, transform: `rotate(-63deg)` },
+    { top: 445, left: 181, width: 133, transform: `rotate(-63deg)` },
     { top: 543, left: 185, width: 57, transform: `rotate(90deg)`  }
 ].map((el, i) => {
     return { css: { ...el }, class: 'red', id: 'r' + i }
@@ -72,6 +86,7 @@ const lines = () => {
 };
 
 const MapComponent = () => {
+
     const elements = [];
     const _lines = lines();
     for (const [i, el] of config.entries()) {
