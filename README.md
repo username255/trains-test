@@ -22,6 +22,8 @@ which is mostly based of MOVE state variable and some math dividing the step by 
 
 Map component renders the map itself first time, tried to add some configs, though doesn't still look too cool as for me, but it works pretty stable I'd say.
 
+Animations on lines work in such way, those are triggered when it's looking into that direction, but it doesn't mean the train will move there during this turn
+
 ### Usage:
 
 created with `create-react-app` and then nothing else was added, just some css and js written by myself.

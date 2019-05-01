@@ -26,7 +26,7 @@ export class RenderLogic extends Component {
 
     loopFn = () => {
         let classList = [];
-        this.priority.map(({ stations, key, color, suffix }) => {
+        this.priority.forEach(({ stations, key, color, suffix }) => {
         let nextStation;
         let index;
         let move = this.state.MOVE[color];
@@ -103,7 +103,6 @@ export class RenderLogic extends Component {
     start = () => {
         if (!this.state.isPlaying) {
             this.intervalRef = window.setInterval(this.loopFn, 2000);
-            console.log(this.state);
             this.setState({
                 ...this.state,
                 isPlaying: true
