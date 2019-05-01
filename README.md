@@ -1,7 +1,9 @@
 ## Setup guide
 
 Install using `npm i`
+
 Run using `npm start`
+
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
 You can also build it if you really want by executing  `npm run build`
@@ -12,8 +14,11 @@ and find few new files in `build` folder
 ### Logic behind the whole thing
 
 |_ App.js
+
   |_ RenderLogic.js (wrapper)
+
     |_ Map
+
     |_ PassengersInput(s)
 
 Most of game logic lies within RenderLogic file,
